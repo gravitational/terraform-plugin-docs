@@ -42,3 +42,16 @@ func CodeFile(format, file string) (string, error) {
 
 	return md.String(), nil
 }
+
+func IncludeFileIfExists(file string) (string, error) {
+	content, err := os.ReadFile(file)
+	if err != nil {
+		return "", nil
+	}
+
+	sContent := strings.TrimSpace(string(content))
+	if sContent == "" {
+		return "", fmt.Errorf("no file content in %q", file)
+	}
+	return sContent, nil
+}
