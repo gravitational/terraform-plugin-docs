@@ -62,7 +62,6 @@ func newTemplate(providerDir, name, text string) (*template.Template, error) {
 		"title":               titleCaser.String,
 		"trimspace":           strings.TrimSpace,
 		"upper":               strings.ToUpper,
-		"includefile":         tmplfuncs.IncludeFile,
 		"includefileifexists": tmplfuncs.IncludeFileIfExists,
 	})
 
