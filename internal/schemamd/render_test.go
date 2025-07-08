@@ -77,7 +77,7 @@ func TestRender(t *testing.T) {
 			}
 
 			b := &strings.Builder{}
-			err = schemamd.Render(&schema, b)
+			err = schemamd.Render(&schema, b, schemamd.Config{})
 			if err != nil {
 				t.Fatal(err)
 			}

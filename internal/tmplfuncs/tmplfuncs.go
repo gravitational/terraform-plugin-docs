@@ -46,7 +46,7 @@ func CodeFile(format, file string) (string, error) {
 func IncludeFileIfExists(file string) (string, error) {
 	content, err := os.ReadFile(file)
 	if err != nil {
-		return "", nil
+		return "", nil //nolint:nilerr
 	}
 
 	sContent := strings.TrimSpace(string(content))
