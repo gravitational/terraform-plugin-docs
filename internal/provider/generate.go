@@ -661,10 +661,11 @@ func (g *generator) renderStaticWebsite(providerSchema *tfjson.ProviderSchema) e
 		case "ephemeral-resources/":
 			resSchema, resName := resourceSchema(providerSchema.EphemeralResourceSchemas, shortName, relFile)
 			exampleFilePath := filepath.Join(g.ProviderExamplesDir(), "ephemeral-resources", resName, "ephemeral-resource.tf")
+			importFilePath := filepath.Join(g.ProviderExamplesDir(), "ephemeral-resources", resName, "import.sh")
 
 			if resSchema != nil {
 				tmpl := resourceTemplate(tmplData)
-				render, err := tmpl.Render(g.providerDir, resName, g.providerName, g.renderedProviderName, "Ephemeral Resource", exampleFilePath, "", resSchema)
+				render, err := tmpl.Render(cfg, resName, "Ephemeral Resource", exampleFilePath, importFilePath, resSchema)
 				if err != nil {
 					return fmt.Errorf("unable to render ephemeral resource template %q: %w", rel, err)
 				}
