@@ -127,13 +127,15 @@ func (t docTemplate) Render(cfg templateConfig, schema *tfjson.ProviderSchema, o
 	}
 
 	data := struct {
-		ResourceFiles   map[string]string
-		DataSourceFiles map[string]string
-		FunctionFiles   map[string]string
+		ResourceFiles          map[string]string
+		EphemeralResourceFiles map[string]string
+		DataSourceFiles        map[string]string
+		FunctionFiles          map[string]string
 	}{
-		DataSourceFiles: getFileMaps(schema.DataSourceSchemas, cfg.providerName),
-		ResourceFiles:   getFileMaps(schema.ResourceSchemas, cfg.providerName),
-		FunctionFiles:   getFileMaps(schema.Functions, cfg.providerName),
+		DataSourceFiles:        getFileMaps(schema.DataSourceSchemas, cfg.providerName),
+		EphemeralResourceFiles: getFileMaps(schema.EphemeralResourceSchemas, cfg.providerName),
+		ResourceFiles:          getFileMaps(schema.ResourceSchemas, cfg.providerName),
+		FunctionFiles:          getFileMaps(schema.Functions, cfg.providerName),
 	}
 
 	return renderTemplate(cfg.providerDir, "docTemplate", s, out, data)
