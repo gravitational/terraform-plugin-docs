@@ -73,7 +73,7 @@ tffile: {{ tffile .ExampleFile }}
 `
 	expectedString := `
 Printf tffile: {{tffile "provider.tf"}}
-tffile: terraform
+tffile: hcl
 provider "scaffolding" {
   # example configuration here
 }
@@ -93,7 +93,12 @@ provider "scaffolding" {
 		},
 	}
 
-	result, err := tpl.Render("testdata/test-provider-dir", "testTemplate", "test-provider", "test-provider", "Resource", "provider.tf", "provider.tf", &schema)
+	cfg := templateConfig{
+		providerDir:  "testdata/test-provider-dir",
+		providerName: "test-provider",
+	}
+
+	result, err := tpl.Render(cfg, "testTemplate", "Resource", "provider.tf", "provider.tf", &schema)
 	if err != nil {
 		t.Error(err)
 	}
@@ -113,7 +118,7 @@ tffile: {{ tffile .ExampleFile }}
 `
 	expectedString := `
 Printf tffile: {{tffile "provider.tf"}}
-tffile: terraform
+tffile: hcl
 provider "scaffolding" {
   # example configuration here
 }
@@ -133,7 +138,12 @@ provider "scaffolding" {
 		},
 	}
 
-	result, err := tpl.Render("testdata/test-provider-dir", "testTemplate", "test-provider", "provider.tf", &schema)
+	cfg := templateConfig{
+		providerDir:  "testdata/test-provider-dir",
+		providerName: "test-provider",
+	}
+
+	result, err := tpl.Render(cfg, "provider.tf", &schema)
 	if err != nil {
 		t.Error(err)
 	}

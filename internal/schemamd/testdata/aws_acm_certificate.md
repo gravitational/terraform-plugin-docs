@@ -16,12 +16,11 @@
 ### Read-Only
 
 - `arn` (String)
-- `domain_validation_options` (Set of Object) (see [below for nested schema](#nestedatt--domain_validation_options))
+- `domain_validation_options` (Set of Object) (see [below for nested schema](#nested-schema-for-domain_validation_options))
 - `id` (String) The ID of this resource.
 - `status` (String)
 - `validation_emails` (List of String)
 
-<a id="nestedblock--options"></a>
 ### Nested Schema for `options`
 
 Optional:
@@ -29,7 +28,6 @@ Optional:
 - `certificate_transparency_logging_preference` (String)
 
 
-<a id="nestedatt--domain_validation_options"></a>
 ### Nested Schema for `domain_validation_options`
 
 Read-Only:
