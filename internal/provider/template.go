@@ -141,7 +141,7 @@ func (t docTemplate) Render(cfg templateConfig, schema *tfjson.ProviderSchema, o
 
 func getFileMaps[T any](m map[string]T, providerName string) map[string]string {
 	items := make(map[string]string, len(m))
-	for item, _ := range m {
+	for item := range m {
 		items[item] = resourceShortName(item, providerName)
 	}
 	return items
